@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meetups/provider/auth_provider.dart';
+import 'package:meetups/screens/login_page.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends ConsumerWidget {
   const SettingsPage({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'App Settings',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isLoggedIn = ref.watch(authProvider);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
+      ),
+      body: Center(
+        child: isLoggedIn
+            ? ElevatedButton(
+                onPressed: () async {
+                  await ref.read(authProvider.notifier).logout();
+                  Navigator.pop(context); // Navigate back to the previous page
+                },
+                child: const Text('Logout'),
+              )
+            : ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+                child: const Text('Login'),
               ),
-            ),
-            SizedBox(height: 16),
-            Text('Option 1'),
-            Text('Option 2'),
-            Text('Option 3'),
-            Text('Option 4'),
-          ],
-        ),
       ),
     );
   }

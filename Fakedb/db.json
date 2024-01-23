@@ -1,0 +1,77 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "Event 1",
+      "description": "Description of Event 1",
+      "image": "https://images.squarespace-cdn.com/content/v1/60da576b8b440e12699c9263/1650354559198-U58EM4C8OL0QIVOW3CSN/Ovation.jpg",
+      "location": {
+        "name": "Location 1",
+        "address": "Address 1",
+        "latitude": 37.7749,
+        "longitude": -122.4194
+      },
+      "dates": ["2022-12-01T00:00:00.000Z"],
+      "members": ["e1Member 1", "e1Member 2"]
+    },
+    {
+      "id": "2",
+      "title": "Event 2",
+      "description": "Description of Event 2",
+      "image": "https://images.squarespace-cdn.com/content/v1/60da576b8b440e12699c9263/1650354559198-U58EM4C8OL0QIVOW3CSN/Ovation.jpg",
+      "location": {
+        "name": "Location 2",
+        "address": "Address 2",
+        "latitude": 37.7749,
+        "longitude": -122.4194
+      },
+      "dates": ["2022-12-01T00:00:00.000Z"],
+      "members": ["e2Member 1", "e2Member 2"]
+    },
+    {
+      "id": "3",
+      "title": "Event 3",
+      "description": "Description of Event 3",
+      "image": "https://images.squarespace-cdn.com/content/v1/60da576b8b440e12699c9263/1650354559198-U58EM4C8OL0QIVOW3CSN/Ovation.jpg",
+      "location": {
+        "name": "Location 3",
+        "address": "Address 3",
+        "latitude": 37.7749,
+        "longitude": -122.4194
+      },
+      "dates": ["2022-12-01T00:00:00.000Z"],
+      "members": ["e3Member 1", "e3Member 2"]
+    },
+    {
+      "id": "2024-01-18 14:49:11.635",
+      "title": "Sample Event",
+      "description": "This is a sample event.",
+      "image": "https://images.squarespace-cdn.com/content/v1/60da576b8b440e12699c9263/1650354559198-U58EM4C8OL0QIVOW3CSN/Ovation.jpg",
+      "location": {
+        "name": "Sample Location",
+        "address": "123 Sample Street",
+        "latitude": 37.422,
+        "longitude": -122.084
+      },
+      "dates": ["2022-12-31T00:00:00.000", "2023-01-01T00:00:00.000"],
+      "members": []
+    },
+    {
+      "id": "2024-01-18 15:05:27.505",
+      "title": "Sample Event2",
+      "description": "This is a sample event2.",
+      "image": "https://images.squarespace-cdn.com/content/v1/60da576b8b440e12699c9263/1650354559198-U58EM4C8OL0QIVOW3CSN/Ovation.jpg",
+      "location": {
+        "name": "Sample Location2",
+        "address": "1234 Sample Street",
+        "latitude": 37.422,
+        "longitude": -122.084
+      },
+      "dates": ["2022-12-31T00:00:00.000"],
+      "members": []
+    }
+  ],
+  "login": {
+    "loggedIn": true
+  }
+}

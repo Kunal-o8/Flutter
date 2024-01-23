@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meetups/utils/canvas/line_painter.dart';
 import 'screens/events_page.dart';
 import 'screens/members_page.dart';
 import 'screens/settings_page.dart';
@@ -9,14 +10,36 @@ class MyHomePage extends StatefulWidget {
   MyHomePageState createState() => MyHomePageState();
 }
 
-class MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _currentIndex = 0;
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meetup App'),
+        title: FadeTransition(
+          opacity: _controller,
+          child: const Hero(
+            tag: 'appTitle',
+            child: const Text('Meetup App'),
+          ),
+        ),
       ),
       body: _getBody(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -45,15 +68,21 @@ class MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
+            DrawerHeader(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text(
-                'Meetup App',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+              child: CustomPaint(
+                painter: LinePainter(),
+                child: const Hero(
+                  tag: 'appTitle',
+                  child: Text(
+                    'Meetup App',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -83,7 +112,6 @@ class MyHomePageState extends State<MyHomePage> {
                 setState(() {
                   _currentIndex = 2;
                 });
-                // Navigator.pushNamed(context, '/settings');
               },
             ),
           ],
