@@ -19,12 +19,9 @@ jobs:
         with:
           flutter-version: "2.0.6"
       - run: ls
-      - run: cd Day-5/meetups
-      - run: flutter pub get
-      - run: flutter test
-      - run: flutter build apk --release
-      - name: Discover Flutter project
+      - name: Flutter commands
         run: |
-
-          flutter packages get
+          flutter pub get
+          flutter test
           flutter build apk --release
+        working-directory: Day-5/meetups
