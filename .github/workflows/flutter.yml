@@ -18,6 +18,12 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "2.0.6"
+      - run: cd Day-5/meetups
       - run: flutter pub get
       - run: flutter test
       - run: flutter build apk --release
+      - name: Discover Flutter project
+        run: |
+
+          flutter packages get
+          flutter build apk --release
