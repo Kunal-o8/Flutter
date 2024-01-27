@@ -18,7 +18,6 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "3.16.0"
-      - run: ls
       - name: Flutter commands
         run: |
           flutter pub get
