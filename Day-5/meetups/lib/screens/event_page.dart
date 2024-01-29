@@ -48,60 +48,76 @@ class EventPageState extends State<EventPage> {
   @override
   Widget build(BuildContext context) {
     logger.i('Building widget');
+    double screenWidth = MediaQuery.of(context).size.width;
+    double mapHeight = screenWidth > 600 ? 400 : 300;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.event.title),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 16),
-                Image.network(widget.event.image),
-                const SizedBox(height: 16),
-                Text(widget.event.description),
-                const SizedBox(height: 16),
-                Text('Location: ${widget.event.location.name}'),
-                const SizedBox(height: 16),
-                Text('Dates: ${widget.event.dates.join(', ')}'),
-                const SizedBox(height: 16),
-                SizedBox(
-                  height: 300,
-                  child: (currentPosition == null)
-                      ? const Center(child: CircularProgressIndicator())
-                      : GoogleMap(
-                          onMapCreated: onMapCreated,
-                          initialCameraPosition: CameraPosition(
-                            target: LatLng(widget.event.location.latitude,
-                                widget.event.location.longitude),
-                            zoom: 14.0,
-                          ),
-                          markers: {
-                            Marker(
-                              markerId: const MarkerId('eventLocation'),
-                              position: LatLng(widget.event.location.latitude,
-                                  widget.event.location.longitude),
-                              infoWindow:
-                                  InfoWindow(title: widget.event.location.name),
-                            ),
-                            Marker(
-                              markerId: const MarkerId('userLocation'),
-                              position: LatLng(currentPosition!.latitude,
-                                  currentPosition!.longitude),
-                              infoWindow:
-                                  const InfoWindow(title: 'Your Location'),
-                            ),
-                          },
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > 600) {
+            return Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: buildBody(mapHeight),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: buildBody(mapHeight),
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  Widget buildBody(double mapHeight) {
+    return SingleChildScrollView(
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16),
+            Image.network(widget.event.image),
+            const SizedBox(height: 16),
+            Text(widget.event.description),
+            const SizedBox(height: 16),
+            Text('Location: ${widget.event.location.name}'),
+            const SizedBox(height: 16),
+            Text('Dates: ${widget.event.dates.join(', ')}'),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: mapHeight,
+              child: (currentPosition == null)
+                  ? const Center(child: CircularProgressIndicator())
+                  : GoogleMap(
+                      onMapCreated: onMapCreated,
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(widget.event.location.latitude,
+                            widget.event.location.longitude),
+                        zoom: 14.0,
+                      ),
+                      markers: {
+                        Marker(
+                          markerId: const MarkerId('eventLocation'),
+                          position: LatLng(widget.event.location.latitude,
+                              widget.event.location.longitude),
+                          infoWindow:
+                              InfoWindow(title: widget.event.location.name),
                         ),
-                ),
-              ],
+                        Marker(
+                          markerId: const MarkerId('userLocation'),
+                          position: LatLng(currentPosition!.latitude,
+                              currentPosition!.longitude),
+                          infoWindow: const InfoWindow(title: 'Your Location'),
+                        ),
+                      },
+                    ),
             ),
-          ),
+          ],
         ),
-        // body:
       ),
     );
   }
