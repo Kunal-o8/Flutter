@@ -12,6 +12,7 @@ import 'screens/event_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyMeetupApp()));
@@ -60,8 +61,8 @@ class MyMeetupApp extends ConsumerWidget {
         return null;
       },
       supportedLocales: L10n.all,
-      locale: const Locale('en'),
-      localizationsDelegates: [
+      locale: const Locale('fr'),
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
