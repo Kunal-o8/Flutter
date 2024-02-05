@@ -36,9 +36,9 @@ class MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       appBar: AppBar(
         title: FadeTransition(
           opacity: _controller,
-          child: const Hero(
+          child: Hero(
             tag: 'appTitle',
-            child: Text('Meetup App'),
+            child: Text(AppLocalizations.of(context)!.appTitle),
           ),
         ),
       ),
