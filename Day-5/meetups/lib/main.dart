@@ -61,7 +61,7 @@ class MyMeetupApp extends ConsumerWidget {
         return null;
       },
       supportedLocales: L10n.all,
-      locale: const Locale('fr'),
+      // locale: const Locale('fr'),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
