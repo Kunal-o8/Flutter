@@ -3,6 +3,7 @@ import 'package:meetups/utils/canvas/line_painter.dart';
 import 'screens/events_page.dart';
 import 'screens/members_page.dart';
 import 'screens/settings_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
