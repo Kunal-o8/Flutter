@@ -1,0 +1,19 @@
+{
+  "appTitle": "My App",
+  "@appTitle": {
+    "description": "The title of the app"
+  },
+  "hello": "Hello, {name}!",
+  "@hello": {
+    "description": "A greeting to a person",
+    "placeholders": {
+      "name": {
+        "description": "The name of the person to greet"
+      }
+    }
+  },
+  "welcome": "Welcome!",
+  "@welcome": {
+    "description": "A welcome message"
+  }
+}
